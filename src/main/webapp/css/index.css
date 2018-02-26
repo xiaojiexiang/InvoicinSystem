@@ -1,0 +1,95 @@
+			#bgimg{
+				background-image: url(../images/img/regist_bg.jpg);
+				background-size: auto;	
+			}
+			#father{
+				width: 900px;
+				margin: auto;	
+			}
+			#mylogo{
+				float: left;
+			}
+			#login{
+				float: right;
+				margin-top: 20px;
+			}
+			#flag{
+				background-color: #999;
+				height: 45px;
+				padding-top: 1px;
+				padding-left: 2px;
+			}
+			ul	{
+				list-style: none;
+			}
+			ul li{
+				display: inline;
+			}
+			ul a{
+				text-decoration: none;
+				
+			}
+			ul a:link{
+				color: black;
+			}
+			ul a:visited{
+				color: black;
+			}
+			ul a:hover{
+				color: white;
+			}
+			ul a:active{
+				color: blueviolet;
+			}
+			.clear{
+				clear: both;
+			}
+			#pro_left_01{
+				width: 25%;
+				float: left;
+			}
+			#pro_right_1{
+				float: left;
+				width: 75%;
+			}
+			.product_right{
+				float: left;
+				width: 25%;
+				text-align: center;
+			}
+			.product_right p{
+				margin-top: 0px;
+			}
+			#help{
+				margin: auto;
+			}
+			#mlink{
+				text-align: center;
+				font-size: 15px;
+				margin: auto;
+			}
+			#mlink a{
+				padding: 15px;
+				text-decoration: none;
+			}
+			#mlink a:link{
+				color: blue;
+			}
+			#mlink a:visited{
+				color: blue;
+			}
+			#mlink a:hover{
+				color: #999999;
+			}
+			#mlink a:active{
+				color: purple;
+			}
+			#copy{
+				font-size: small;
+				text-align: center;
+				margin-bottom: 100px;
+			}
+			#ad{
+				margin: auto;
+			}
+		

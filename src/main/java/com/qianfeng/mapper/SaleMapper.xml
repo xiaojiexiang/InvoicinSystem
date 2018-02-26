@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qianfeng.mapper.SaleMapper">
+	<insert id="insertSale" parameterType="com.qianfeng.pojo.po.Sale" useGeneratedKeys="true"
+		keyColumn="saleId" keyProperty="saleId">
+		INSERT INTO 
+		sale
+		(price,quantity,totalprice,saledate,uid,productId)
+		values
+		(#{price},#{quantity},#{totalprice},#{saledate},#{uid},#{productId})
+	</insert>
+	<select id="selectSale" parameterType="Integer" resultMap="saleList">
+		SELECT * FROM sale ORDER BY saledate DESC, saleId DESC LIMIT #{0},#{1}
+	</select>
+	<resultMap type="com.qianfeng.pojo.po.Sale" id="saleList">
+		<id column="saleId" property="saleId"/>
+		<result column="price" property="price"/>
+		<result column="quantity" property="quantity"/>
+		<result column="totalprice" property="totalprice"/>
+		<result column="saledate" property="saledate"/>
+		<result column="uid" property="uid"/>
+		<result column="productId" property="productId"/>
+	</resultMap>
+	<select id="selectTotalCountSale" resultType="Integer">
+		SELECT count(*) FROM sale
+	</select>
+	<select id="selectSaleOrderByTotalprice" parameterType="Integer" resultMap="saleList">
+		SELECT * FROM sale ORDER BY totalprice DESC, saleId DESC LIMIT #{0},#{1}
+	</select>
+	
+</mapper>

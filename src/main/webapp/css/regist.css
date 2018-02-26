@@ -1,0 +1,51 @@
+		#bgimg{
+				background-image:url(../images/img/regist_bg.jpg) ;
+				
+			}
+			#res_father{
+				width: 600px;
+				height: 600px;
+				margin: auto;
+				padding-top: 100px;
+			}
+			#left{
+				width: 50%;
+				float: left;
+			}
+			#right{
+				width: 50%;
+				float: right;
+			}
+			#padding_top100px{
+				padding-top: 100px;
+			}
+			.clear{
+				clear: both;
+			}
+			.div_text{
+				text-align: right;
+				padding-top: 10px;
+			}
+			.div_input{
+				text-align: left;
+				padding-top: 10px;
+			}
+			#submit{
+				height: 50px;
+				text-align: center;
+			}
+			div span{
+				color: red;
+				font-size: smaller;
+			}
+			div table{
+				text-align: left;
+			}
+			#div_input_check{
+				padding: 10px;
+			}
+			#div_text_per{
+				text-align: right;
+				padding-top: 100px;
+			}
+		
