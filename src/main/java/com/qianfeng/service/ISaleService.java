@@ -10,8 +10,6 @@ public interface ISaleService {
 
 	void insertSale(Sale sale);
 
-	//List<SaleShow> selectSale();
-
 	PageBean<SaleShow> selectPageBean(Integer currentPageInt, Integer currentCount,String orderMethod);
 
 }

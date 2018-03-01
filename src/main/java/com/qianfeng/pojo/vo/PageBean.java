@@ -11,6 +11,8 @@ public class PageBean<T> {
 	 * 数据总条数	totalCount
 	 * 总页数		totalPage
 	 * 当前页上的数据     PageData
+	 *
+	 * 排序方式		orderMethod
 	 */
 	private Integer currentPage;
 	private Integer currentCount;

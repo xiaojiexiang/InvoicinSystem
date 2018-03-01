@@ -32,49 +32,22 @@ public class SaleServiceImpl implements ISaleService {
 		sale.setTotalprice(totalprice);
 		saleMapper.insertSale(sale);
 	}
-/*	@Override
-	public List<SaleShow> selectSale() {
-		List<Sale> saleList = saleMapper.selectSale();
-		List<SaleShow> saleShowList = new ArrayList<>();
-		for (Sale sale : saleList) {
-			SaleShow saleShow = new SaleShow();
-			User user = userMapper.selectUserById(sale.getUid());
-			Product product = productMapper.selectProductById(sale.getProductId());
-			saleShow.setProduct(product);
-			saleShow.setUser(user);
-			saleShow.setSale(sale);
-			saleShowList.add(saleShow);
-		}
-		return saleShowList;
-	}*/
-	
+
 	/**
-	 * 要想实现分页的功能，就必须获得这五项数据
-	 * 当前页	   currentPage
-	 * 每页显示的条数    currentCount
-	 * 数据总条数	totalCount
-	 * 总页数		totalPage
-	 * 当前页上的数据     PageData
+	 *
+	 * @param currentPageInt
+	 * @param currentCount
+	 * @param orderMethod
+	 * @return
 	 */
-	/*@Override
-	public PageBean<SaleShow> selectPageBean(PageBean<SaleShow> pageBean,List<SaleShow> saleShowList) {
-		Integer currentPageInt = 1;
-		if (pageBean.getCurrentPage()!=1&&pageBean.getCurrentPage()!=null) {
-			currentPageInt = pageBean.getCurrentPage();
-		}
-		Integer currentCount = 5;
-		Integer totalCount = saleMapper.selectTotalCountSale();
-		Integer totalPage = (int) Math.ceil(totalCount/(currentCount*1.0));
-		pageBean.setCurrentPage(currentPageInt);
-		pageBean.setCurrentCount(currentCount);
-		pageBean.setTotalCount(totalCount);
-		pageBean.setTotalPage(totalPage);
-		pageBean.setPageData(saleShowList);
-		return pageBean;
-	}*/
 	@Override
 	public PageBean<SaleShow> selectPageBean(Integer currentPageInt, Integer currentCount,String orderMethod) {
+
+		// 分页查询的起始坐标
 		Integer currentPageIndex = (currentPageInt-1)*currentCount;
+
+		// 每页显示的数据
+		// 查询结果封装到List集合中,注意这里涉及到两种排序方式(默认排序为0,即orderMethod=null的时候)
 		List<Sale> saleList = new ArrayList<>();
 		if (orderMethod==null||orderMethod.equals("0")) {
 			saleList = saleMapper.selectSale(currentPageIndex,currentCount);
@@ -82,6 +55,10 @@ public class SaleServiceImpl implements ISaleService {
 		}else if (orderMethod.equals("1")) {
 			saleList = saleMapper.selectSaleOrderByTotalprice(currentPageIndex, currentCount);
 		}
+		//将数据信息整合封装入SaleShow的集合中
+		//这里做的比较复杂,由于在持久化的时候,存储的都是部分的代号(外键),
+		// 所以要根据外键去查找对应的数据,
+		//将其封装到对象中
 		List<SaleShow> saleShowList = new ArrayList<>();
 		for (Sale sale : saleList) {
 			SaleShow saleShow = new SaleShow();
@@ -90,11 +67,15 @@ public class SaleServiceImpl implements ISaleService {
 			saleShow.setProduct(product);
 			saleShow.setUser(user);
 			saleShow.setSale(sale);
+			//将封装完成的对象add到List集合中
 			saleShowList.add(saleShow);
 		}
+		//数据的总条数
 		Integer totalCount = saleMapper.selectTotalCountSale();
+		//根据总条数和每页显示的条数计算出总的页码数
 		Integer totalPage = (int) Math.ceil(totalCount/(currentCount*1.0));
-		
+
+		//所有的信息都得到了,剩下的就是封装到bean中,return给上一层
 		PageBean<SaleShow> pageBean = new PageBean<>();
 		pageBean.setCurrentPage(currentPageInt);
 		pageBean.setCurrentCount(currentCount);
